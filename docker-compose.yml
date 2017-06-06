@@ -205,6 +205,24 @@ services:
       networks:
         - backend
 
+### MariaDB Container #######################################
+
+    mariadb:
+      build:
+        context: ./mariadb
+      environment:
+        - MYSQL_DATABASE=${MARIADB_DATABASE}
+        - MYSQL_USER=${MARIADB_USER}
+        - MYSQL_PASSWORD=${MARIADB_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      volumes:
+        - ${DATA_SAVE_PATH}/mariadb:/var/lib/mysql
+        - ./mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      ports:
+        - "${MARIADB_PORT}:3306"
+      networks:
+        - backend
+
 ### Percona Container #########################################
 
     percona:
@@ -236,23 +254,6 @@ services:
         - ${DATA_SAVE_PATH}/mssql:/var/opt/mssql
       ports:
         - "${MSSQL_PORT}:1433"
-      networks:
-        - backend
-
-### MariaDB Container #######################################
-
-    mariadb:
-      build: ./mariadb
-      volumes:
-        - ${DATA_SAVE_PATH}/mariadb:/var/lib/mysql
-        - ./mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      ports:
-        - "${MARIADB_PORT}:3306"
-      environment:
-        - MYSQL_DATABASE=${MARIADB_DATABASE}
-        - MYSQL_USER=${MARIADB_USER}
-        - MYSQL_PASSWORD=${MARIADB_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       networks:
         - backend
 
@@ -610,6 +611,8 @@ networks:
 volumes:
   mysql:
     driver: "local"
+  mariadb:
+    driver: "local"
   percona:
     driver: "local"
   mssql:
@@ -621,8 +624,6 @@ volumes:
   redis:
     driver: "local"
   neo4j:
-    driver: "local"
-  mariadb:
     driver: "local"
   mongo:
     driver: "local"
