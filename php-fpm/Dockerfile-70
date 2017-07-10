@@ -71,7 +71,9 @@ COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 ARG INSTALL_IMAGICK=false
 RUN if [ ${INSTALL_IMAGICK} = true ]; then \
     # Install the imagick extension
-    pecl install imagick  && \
+    apt-get update -yqq && \
+    apt-get -y install libmagickwand-dev --no-install-recommends && \
+    pecl install imagick && \
     docker-php-ext-enable imagick \
 ;fi
 
