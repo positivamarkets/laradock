@@ -10,7 +10,11 @@ APPLICATION=../
 ### Data Path:
 # For all storage systems.
 
-DATA_SAVE_PATH=~/.laradock/data
+#for Linux/MacOS
+#DATA_SAVE_PATH=~/.laradock/data
+#for Windows the paths like `D:\Users\` doesn't work
+#COMPOSE_CONVERT_WINDOWS_PATHS=1
+DATA_SAVE_PATH=c:/Users/<username>/.laradock/data
 
 ### PHP version
 # Applies to the Workspace and PHP-FPM containers (Does not apply to HHVM)
@@ -30,6 +34,7 @@ PHP_INTERPRETER=php-fpm
 ### WORKSPACE ##########################################################################################################
 
 WORKSPACE_INSTALL_XDEBUG=false
+WORKSPACE_INSTALL_IMAGICK=false
 WORKSPACE_INSTALL_SOAP=false
 WORKSPACE_INSTALL_MONGO=false
 WORKSPACE_INSTALL_MSSQL=false
@@ -55,6 +60,7 @@ WORKSPACE_SSH_PORT=2222
 ### PHP_FPM ############################################################################################################
 
 PHP_FPM_INSTALL_XDEBUG=false
+PHP_FPM_INSTALL_IMAGICK=false
 PHP_FPM_INSTALL_MONGO=false
 PHP_FPM_INSTALL_MSSQL=false
 PHP_FPM_INSTALL_SOAP=false
