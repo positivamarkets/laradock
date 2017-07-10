@@ -65,6 +65,17 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #####################################
+# Imagick:
+#####################################
+
+ARG INSTALL_IMAGICK=false
+RUN if [ ${INSTALL_IMAGICK} = true ]; then \
+    # Install the imagick extension
+    pecl install imagick  && \
+    docker-php-ext-enable imagick \
+;fi
+
+#####################################
 # Blackfire:
 #####################################
 
