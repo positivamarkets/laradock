@@ -33,7 +33,9 @@ A Docker PHP development environment that facilitates running **PHP** Apps on **
 [MIT License](https://github.com/laradock/laradock/blob/master/LICENSE) (MIT)
 
 
-# Get your initial certificate
+# Nginx certbot sertificate
+
+## Get your initial certificate
 
 Run `certbot.sh` in the docker container. It'll see that it didn't fetch any certifcates yet and run the inital setup.
 
@@ -41,7 +43,7 @@ Run `certbot.sh` in the docker container. It'll see that it didn't fetch any cer
     
 If you haven't set the `TOS` environment variable `certbot` will ask you to accept their TOS, so be sure to run this command from an interactive shell.
 
-# Update your certificate
+## Update your certificate
 
 `certbot` certificates are only valid for some 90 days. You'll need to refresh them regularly.
 The procedure is the same as for the inital step.
@@ -52,7 +54,7 @@ Run `certbot.sh` in the docker container. It'll see the existing certificate and
     
 Put this line in your docker-host crontab and run it every month or so.
 
-# Keeping and sharing your certificate
+## Keeping and sharing your certificate
 
 SSL related files are placed in `/etc/letsencrypt/live/<firstdomain>/`. This
 directory is recreated with the container, unless you choose to make a volume
